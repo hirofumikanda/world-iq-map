@@ -6,7 +6,8 @@
 
 - [Natural Earth（Admin 0 – Countries）](https://www.naturalearthdata.com/downloads/10m-cultural-vectors/)を背景に使用
 - [Most Intelligent Countries in the World in 2025](https://www.worldwide-iq-test.com/iq-tests)を参考に、IQに応じて各国を色分けして表示
-- IQの高さを柱状にした視覚表現のOn/Off
+- 各国をクリックするとポップアップでIQ属性値表示
+- スライダーで色分け表示対象の最小IQ閾値を設定
 
 ## 🔧 セットアップ手順
 

@@ -7,7 +7,7 @@ import { setupPointerHandler } from "../utils/pointer";
 import { onMapLoad } from "../utils/onMapLoad";
 import { LegendItem } from "./LegendItem";
 
-const CIRCLE_LAYER_ID = "iq_by_country_circle";
+const LABEL_LAYER_ID = "iq-labels";
 
 type MapViewProps = {
   minIQ: number;
@@ -18,7 +18,7 @@ const FILL_LAYER_ID = "iq_by_country";
 const MapView = ({ minIQ }: MapViewProps) => {
   const mapContainerRef = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<maplibregl.Map | null>(null);
-  const [circleVisible, setCircleVisible] = useState(false);
+  const [labelVisible, setLabelVisible] = useState(false);
 
 
   useEffect(() => {
@@ -101,14 +101,14 @@ const MapView = ({ minIQ }: MapViewProps) => {
   useEffect(() => {
     const map = mapRef.current;
     if (!map) return;
-    if (map.getLayer(CIRCLE_LAYER_ID)) {
+    if (map.getLayer(LABEL_LAYER_ID)) {
       map.setLayoutProperty(
-        CIRCLE_LAYER_ID,
+        LABEL_LAYER_ID,
         "visibility",
-        circleVisible ? "visible" : "none"
+        labelVisible ? "visible" : "none"
       );
     }
-  }, [circleVisible]);
+  }, [labelVisible]);
 
   return (
     <>
@@ -126,10 +126,10 @@ const MapView = ({ minIQ }: MapViewProps) => {
         <label>
           <input
             type="checkbox"
-            checked={circleVisible}
-            onChange={(e) => setCircleVisible(e.target.checked)}
+            checked={labelVisible}
+            onChange={(e) => setLabelVisible(e.target.checked)}
           />
-          柱状表示
+          ラベル表示
         </label>
       </div>
       <div
@@ -147,10 +147,10 @@ const MapView = ({ minIQ }: MapViewProps) => {
       >
         <div style={{ fontWeight: "bold", marginBottom: 4 }}>IQ凡例</div>
         <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
-          <LegendItem color="#cb181d" label="110-" />
-          <LegendItem color="#fb6a4a" label="100–109" />
-          <LegendItem color="#fcae91" label="90–99" />
-          <LegendItem color="#fee5d9" label="-89" />
+          <LegendItem color="#cb181d" label="120" />
+          <LegendItem color="#fb6a4a" label="110" />
+          <LegendItem color="#fcae91" label="100" />
+          <LegendItem color="#fee5d9" label="90" />
         </div>
       </div>
       <div ref={mapContainerRef} style={{ width: "100%", height: "100vh" }} />

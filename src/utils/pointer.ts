@@ -1,6 +1,6 @@
 import { Map, MapMouseEvent } from "maplibre-gl";
 
-const ALLOW_LAYERS = ["iq_by_country", "iq-labels", "iq_by_country_circle"];
+const ALLOW_LAYERS = ["iq_by_country", "iq-labels"];
 
 export const setupPointerHandler = (map: Map) => {
   map.on("mousemove", (e: MapMouseEvent) => {

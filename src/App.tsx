@@ -9,7 +9,7 @@ function App() {
       <div
         style={{
           position: 'absolute',
-          top: 10,
+          top: 50,
           left: 10,
           zIndex: 10,
           background: 'rgba(255,255,255,0.95)',

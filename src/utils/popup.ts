@@ -1,7 +1,7 @@
 import maplibregl, { Map, MapMouseEvent } from "maplibre-gl";
 import type { MapGeoJSONFeature } from "maplibre-gl";
 
-const ALLOW_LAYERS = ["iq_by_country", "iq-labels", "iq_by_country_circle"];
+const ALLOW_LAYERS = ["iq_by_country", "iq-labels"];
 
 export const setupPopupHandler = (map: Map) => {
   map.on("click", (e: MapMouseEvent) => {
