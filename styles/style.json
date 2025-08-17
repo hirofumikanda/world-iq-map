@@ -6,16 +6,11 @@
       "url": "pmtiles:///world-iq-map/data/iq_by_country.pmtiles",
       "minzoom": 0,
       "maxzoom": 8,
-      "attribution": "<a href='https://www.naturalearthdata.com/downloads/10m-cultural-vectors/' target='_blank'>Made with Natural Earth</a>"
+      "attribution": "<a href='https://www.naturalearthdata.com/downloads/10m-cultural-vectors/' target='_blank'>Made with Natural Earth</a> | <a href='https://www.worldwide-iq-test.com/iq-tests' target='_blank'>Most Intelligent Countries in the World in 2025</a>"
     },
     "iq_by_country_symbol": {
       "type": "geojson",
       "data": "data/iq_by_country_symbol.geojson",
-      "attribution": "<a href='https://www.worldwide-iq-test.com/iq-tests' target='_blank'>Most Intelligent Countries in the World in 2025</a>"
-    },
-    "iq_by_country_circle": {
-      "type": "geojson",
-      "data": "data/iq_by_country_circle.geojson",
       "attribution": "<a href='https://www.worldwide-iq-test.com/iq-tests' target='_blank'>Most Intelligent Countries in the World in 2025</a>"
     }
   },
@@ -49,42 +44,16 @@
       "type": "symbol",
       "source": "iq_by_country_symbol",
       "layout": {
-        "text-field": ["get", "avg_iq"],
-        "text-size": 12,
-        "text-anchor": "center"
+        "text-field": ["to-string", ["round", ["get", "avg_iq"]]],
+        "text-size": 10.5,
+        "text-anchor": "center",
+        "visibility": "none"
       },
       "paint": {
         "text-color": "#333",
         "text-halo-color": "#fff",
         "text-halo-width": 1
       }
-    },
-    {
-      "id": "iq_by_country_circle",
-      "type": "fill-extrusion",
-      "source": "iq_by_country_circle",
-      "paint": {
-        "fill-extrusion-color": [
-          "step",
-          ["get", "avg_iq"],
-          "#fee5d9",
-          90,
-          "#fcae91",
-          100,
-          "#fb6a4a",
-          110,
-          "#cb181d"
-        ],
-        "fill-extrusion-height": [
-          "*",
-          ["^", ["-", ["get", "avg_iq"], 100], 1.9],
-          10000
-        ]
-      },
-      "layout": {
-        "visibility": "none"
-      },
-      "minzoom": 1
     }
   ]
 }
