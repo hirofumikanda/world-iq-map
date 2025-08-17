@@ -12,7 +12,7 @@ const CIRCLE_LAYER_ID = "iq_by_country_circle";
 const MapView = () => {
   const mapContainerRef = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<maplibregl.Map | null>(null);
-  const [circleVisible, setCircleVisible] = useState(true);
+  const [circleVisible, setCircleVisible] = useState(false);
 
   useEffect(() => {
     const protocol = new Protocol();
@@ -21,10 +21,10 @@ const MapView = () => {
     const map = new maplibregl.Map({
       container: mapContainerRef.current!,
       style: "styles/style.json",
-      center: [139, 11.41],
-      zoom: 2,
+      center: [139, 36],
+      zoom: 1,
       minZoom: 0,
-      pitch: 60,
+      pitch: 0,
       hash: true,
     });
 

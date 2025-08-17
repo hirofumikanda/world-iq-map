@@ -28,14 +28,16 @@
       "source-layer": "iq_by_country",
       "paint": {
         "fill-color": [
-          "step",
+          "interpolate",
+          ["linear"],
           ["get", "avg_iq"],
-          "#fee5d9",
           90,
-          "#fcae91",
+          "#fee5d9",
           100,
-          "#fb6a4a",
+          "#fcae91",
           110,
+          "#fb6a4a",
+          120,
           "#cb181d"
         ],
         "fill-opacity": 0.85,
@@ -80,7 +82,7 @@
         ]
       },
       "layout": {
-        "visibility": "visible"
+        "visibility": "none"
       },
       "minzoom": 1
     }
