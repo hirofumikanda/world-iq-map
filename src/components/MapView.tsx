@@ -9,10 +9,17 @@ import { LegendItem } from "./LegendItem";
 
 const CIRCLE_LAYER_ID = "iq_by_country_circle";
 
-const MapView = () => {
+type MapViewProps = {
+  minIQ: number;
+};
+
+const FILL_LAYER_ID = "iq_by_country";
+
+const MapView = ({ minIQ }: MapViewProps) => {
   const mapContainerRef = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<maplibregl.Map | null>(null);
   const [circleVisible, setCircleVisible] = useState(false);
+
 
   useEffect(() => {
     const protocol = new Protocol();
@@ -32,7 +39,30 @@ const MapView = () => {
 
     map.addControl(new maplibregl.NavigationControl(), "top-right");
 
-    map.on("load", () => onMapLoad(map));
+    map.on("load", () => {
+      onMapLoad(map);
+      // 初期fill-colorもminIQに合わせてセット
+      if (map.getLayer(FILL_LAYER_ID)) {
+        map.setPaintProperty(
+          FILL_LAYER_ID,
+          "fill-color",
+          [
+            "case",
+            [">=", ["get", "avg_iq"], minIQ],
+            [
+              "interpolate",
+              ["linear"],
+              ["get", "avg_iq"],
+              90, "#fee5d9",
+              100, "#fcae91",
+              110, "#fb6a4a",
+              120, "#cb181d"
+            ],
+            "#000"
+          ]
+        );
+      }
+    });
 
     setupPopupHandler(map);
     setupPointerHandler(map);
@@ -41,6 +71,32 @@ const MapView = () => {
       map.remove();
     };
   }, []);
+
+  // minIQ変更時にfill-colorを更新
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map) return;
+    if (map.getLayer(FILL_LAYER_ID)) {
+      map.setPaintProperty(
+        FILL_LAYER_ID,
+        "fill-color",
+        [
+          "case",
+          [">=", ["get", "avg_iq"], minIQ],
+          [
+            "interpolate",
+            ["linear"],
+            ["get", "avg_iq"],
+            90, "#fee5d9",
+            100, "#fcae91",
+            110, "#fb6a4a",
+            120, "#cb181d"
+          ],
+          "#000"
+        ]
+      );
+    }
+  }, [minIQ]);
 
   useEffect(() => {
     const map = mapRef.current;
