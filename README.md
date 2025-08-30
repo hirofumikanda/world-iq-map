@@ -9,6 +9,9 @@
 - 各国をクリックするとポップアップでIQ属性値表示
 - スライダーで色分け表示対象の最小IQ閾値を設定
 
+## デモ
+[GitHub Pagesで公開中](https://hirofumikanda.github.io/world-iq-map/)
+
 ## 🔧 セットアップ手順
 
 ### 1. 依存ライブラリのインストール
